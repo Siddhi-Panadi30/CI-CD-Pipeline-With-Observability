@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: netflix-db-allow-backend-only
+  namespace: netflix
+spec:
+  podSelector:
+    matchLabels:
+     netflix-db-app
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              netflix-backend-app
+      ports:
+        - port: 3306
+          protocol: TCP

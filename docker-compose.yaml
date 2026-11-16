@@ -1,0 +1,55 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: netflix-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: netflix
+      MYSQL_USER: netflix_user
+      MYSQL_PASSWORD: local6994
+      MYSQL_ROOT_PASSWORD: local6994
+    ports:
+      - "3307:3306"
+    volumes:
+      - sqldata:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    container_name: netflix-backend
+    restart: unless-stopped
+    environment:
+      SERVER_PORT: "8080"
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/netflix?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: netflix_user
+      SPRING_DATASOURCE_PASSWORD: local6994
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: netflix-frontend
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+
+    depends_on:
+      - backend
+
+volumes:
+  sqldata:
+    driver: local
+
