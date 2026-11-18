@@ -4,11 +4,11 @@ metadata:
   name: netflix-backend
   namespace: netflix
   labels:
-    netflix-backend-app
+    app: netflix-backend
 spec:
   type: ClusterIP
   selector:
-    netflix-backend-app
+    app: netflix-backend
   ports:
     - port: 8080
       targetPort: 8080
