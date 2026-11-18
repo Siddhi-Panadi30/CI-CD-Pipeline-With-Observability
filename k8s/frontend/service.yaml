@@ -4,13 +4,17 @@ metadata:
   name: netflix-frontend
   namespace: netflix
   labels:
-    netflix-frontend-app
+    app: netflix-frontend
+
+    
 spec:
-  type: NodePort
+  type: ClusterIP
+  
   selector:
-    netflix-frontend-app
+    app: netflix-frontend
+
+    
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 80
       protocol: TCP
-
