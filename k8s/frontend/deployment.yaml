@@ -4,31 +4,37 @@ metadata:
   name: netflix-frontend
   namespace: netflix
   labels:
-    netflix-frontend-app
+    app: netflix-frontend
+    
 spec:
   replicas: 2
+  
   selector:
     matchLabels:
-      netflix-frontend-app
+      app: netflix-frontend
+      
   template:
     metadata:
       labels:
-        netflix-frontend-app
+        app: netflix-frontend
+        
     spec:
       automountServiceAccountToken: false
-      tolerations:
-        - key: "karpenter.sh/disrupted"
-          operator: "Exists"
-          effect: "NoSchedule"
+      
       containers:
         - name: frontend
-          image:           ports:
-            - containerPort: 8080
+          image:siddhip30/netflix-frontend:v1
+          imagePullPolicy: IfNotPresent 
+          
+          ports:
+            - containerPort: 80
               protocol: TCP
+              
           resources:
             requests:
               cpu: 50m
               memory: 64Mi
+              
             limits:
               cpu: 200m
               memory: 128Mi
