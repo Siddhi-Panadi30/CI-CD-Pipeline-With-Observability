@@ -1,19 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
+
 metadata:
   name: netflix-backend-allow-frontend-only
   namespace: netflix
+  
 spec:
   podSelector:
     matchLabels:
-      netflix-backend-app
+       app: netflix-backend
+       
   policyTypes:
     - Ingress
+    
   ingress:
     - from:
         - podSelector:
             matchLabels:
-              netflix-frontend-app
+              app: netflix-frontend
       ports:
         - port: 8080
           protocol: TCP
