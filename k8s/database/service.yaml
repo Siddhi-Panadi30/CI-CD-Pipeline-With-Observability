@@ -4,13 +4,16 @@ metadata:
   name: netflix-db
   namespace: netflix
   labels:
-     netflix-app-db
-   spec:
+     app: netflix-database
+     
+spec:
   type: ClusterIP
-  selector:
-    app.kubernetes.io/name: netflix-db
-  ports:
-    - port: 3306
-      targetPort: 3306
-      protocol: TCP
+  
+selector:
+    app: netflix-database
+    
+ports:
+  - port: 3306
+    targetPort: 3306
+    protocol: TCP
 
