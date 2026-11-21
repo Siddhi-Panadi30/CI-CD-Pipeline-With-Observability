@@ -59,5 +59,7 @@ module "eks" {
   # Auth mode required for Auto Mode
   authentication_mode = "API"
 
+  enable_cluster_creator_admin_permissions = true
 
+}
 
