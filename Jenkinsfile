@@ -76,10 +76,12 @@ stages{
 			steps {
 				script {
 					sh 'cd netflix-clone/backend && docker build -t ${DOCKER_BACKEND_IMAGE} .'
-					sh 'cd netflix-clone && docker build -t ${DOCKER_FRONTEND_IMAGE}
-					def dockerImage = docker.image("${DOCKER_IMAGE}")
+					sh 'cd netflix-clone && docker build -t ${DOCKER_FRONTEND_IMAGE}.'
+					def backendImage = docker.image("${DOCKER_BACKEND_IMAGE}")
+					def frontendImage = docker.image("${DOCKER_FRONTEND_IMAGE}")
 					docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
-					dockerImage.push()
+					backendImage.push()
+					frontendImage.push()
 					}
 				}
 			}
