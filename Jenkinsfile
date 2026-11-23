@@ -15,7 +15,7 @@ stages{
 	
 	stage('Backend Build and Test'){
 		steps{
-			sh 'cd netflix-clone/backend && mvn clean'
+			sh 'cd netflix-clone/backend && mvn clean package'
 		}
 	}
 
