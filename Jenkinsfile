@@ -17,7 +17,7 @@ pipeline {
 
         stage('Backend Build and Test') {
             steps {
-                sh 'cd netflix-clone/backend && mvn clean package'
+                sh 'cd backend && mvn clean package'
             }
         }
 
@@ -43,7 +43,7 @@ pipeline {
 
                     // Backend analysis
                     sh '''
-                        cd netflix-clone/backend
+                        cd backend
 
                         mvn sonar:sonar \
                             -Dsonar.projectKey=netflix-backend \
