@@ -28,7 +28,7 @@ stages{
 
 	stage('Static Code Analysis') {
 		environment {
-			SONAR_URL = 'http://YOUR_SONARQUBE_IP:9000'
+			SONAR_URL = 'http://44.211.189.134:9000'
 		}
 
 		steps {
