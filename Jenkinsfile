@@ -1,7 +1,7 @@
 pipeline{
 agent {
 	docker{
-		image 'siddhip30/netflix-app-image:v1'
+		image 'maven:3.9-eclipse-temurin-21'
 		args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
 		}
 	}
