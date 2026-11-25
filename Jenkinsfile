@@ -101,9 +101,19 @@ pipeline {
 
             steps {
                 script {
-                    sh 'cd backend && docker build -t ${DOCKER_BACKEND_IMAGE} .'
-                    sh 'docker build -t ${DOCKER_FRONTEND_IMAGE}.'
-
+                    sh '''
+                         docker build \
+                         -t ${DOCKER_BACKEND_IMAGE}:latest \
+                         -f backend/Dockerfile \
+                         backend .
+                        '''
+                    sh '''
+                         docker build \
+                         -t ${DOCKER_FRONTEND_IMAGE}:latest \
+                         -f frontend/Dockerfile \
+                         frontend'
+                        '''
+                    
                     def backendImage = docker.image("${DOCKER_BACKEND_IMAGE}")
                     def frontendImage = docker.image("${DOCKER_FRONTEND_IMAGE}")
 
