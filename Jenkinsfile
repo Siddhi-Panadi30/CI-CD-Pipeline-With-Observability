@@ -101,8 +101,8 @@ pipeline {
 
             steps {
                 script {
-                    sh 'cd netflix-clone/backend && docker build -t ${DOCKER_BACKEND_IMAGE} .'
-                    sh 'cd netflix-clone && docker build -t ${DOCKER_FRONTEND_IMAGE}.'
+                    sh 'cd backend && docker build -t ${DOCKER_BACKEND_IMAGE} .'
+                    sh 'docker build -t ${DOCKER_FRONTEND_IMAGE}.'
 
                     def backendImage = docker.image("${DOCKER_BACKEND_IMAGE}")
                     def frontendImage = docker.image("${DOCKER_FRONTEND_IMAGE}")
