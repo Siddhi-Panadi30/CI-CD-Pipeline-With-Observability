@@ -33,12 +33,28 @@ pipeline {
                 }
         }
 
+        
         stage('Frontend Build') {
-            steps {
-                sh 'npm install'
-                sh 'npm run build'
-            }
-        }
+            agent {
+                docker {
+                    image 'node:20'
+                    args '-u root:root'
+                    }
+                }
+                steps {
+                    sh '''
+                        echo "Node version:"
+                        node --version
+
+                        echo "NPM version:"
+                        npm --version
+
+                        npm install
+                        npm run build
+                        '''
+                    }
+                }
+
 
         stage('Static Code Analysis') {
             environment {
