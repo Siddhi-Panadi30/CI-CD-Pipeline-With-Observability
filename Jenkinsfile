@@ -17,8 +17,20 @@ pipeline {
 
         stage('Backend Build and Test') {
             steps {
-                sh 'cd backend && mvn clean package'
-            }
+                sh '''
+                    cd backend
+
+                    echo "===== Checking test configuration ====="
+                    ls -l src/test/resources/
+                    cat src/test/resources/application-test.properties
+
+                    echo "===== Checking H2 dependency ====="
+                    mvn dependency:tree -Dincludes=com.h2database:h2
+
+                    echo "===== Running backend tests ====="
+                    mvn clean package -Dspring.profiles.active=test
+                    '''
+                }
         }
 
         stage('Frontend Build') {
