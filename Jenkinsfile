@@ -77,7 +77,6 @@ pipeline {
 
                     // Frontend analysis
                     sh '''
-                        cd netflix-clone
                         sonar-scanner \
                             -Dsonar.projectKey=netflix-frontend \
                             -Dsonar.projectName="Netflix Frontend" \
