@@ -2,7 +2,7 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.9-eclipse-temurin-21'
+            image 'siddhip30/netflix-jenkins-agent:v1'
             args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
@@ -35,20 +35,8 @@ pipeline {
 
         
         stage('Frontend Build') {
-            agent {
-                docker {
-                    image 'node:20'
-                    args '-u root:root'
-                    }
-                }
                 steps {
                     sh '''
-                        echo "Node version:"
-                        node --version
-
-                        echo "NPM version:"
-                        npm --version
-
                         npm install
                         npm run build
                         '''
