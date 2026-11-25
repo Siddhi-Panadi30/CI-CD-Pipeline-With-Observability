@@ -69,7 +69,7 @@ pipeline {
                     sh '''
                         cd backend
 
-                        mvn sonar:sonar \
+                        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
                             -Dsonar.projectKey=netflix-backend \
                             -Dsonar.projectName="Netflix Backend" \
                             -Dsonar.token=$SONAR_AUTH_TOKEN \
