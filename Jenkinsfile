@@ -68,7 +68,6 @@ pipeline {
                     // Backend analysis
                     sh '''
                         cd backend
-
                         mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
                             -Dsonar.projectKey=netflix-backend \
                             -Dsonar.projectName="Netflix Backend" \
@@ -79,7 +78,6 @@ pipeline {
                     // Frontend analysis
                     sh '''
                         cd netflix-clone
-
                         sonar-scanner \
                             -Dsonar.projectKey=netflix-frontend \
                             -Dsonar.projectName="Netflix Frontend" \
@@ -111,7 +109,7 @@ pipeline {
                          docker build \
                          -t ${DOCKER_FRONTEND_IMAGE}:latest \
                          -f frontend/Dockerfile \
-                         frontend'
+                         frontend .
                         '''
                     
                     def backendImage = docker.image("${DOCKER_BACKEND_IMAGE}")
