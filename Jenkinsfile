@@ -35,7 +35,7 @@ pipeline {
 
         stage('Frontend Build') {
             steps {
-                sh 'cd netflix-clone && npm install'
+                sh 'npm install'
                 sh 'npm run build'
             }
         }
