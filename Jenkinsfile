@@ -37,9 +37,17 @@ pipeline {
         stage('Frontend Build') {
                 steps {
                     sh '''
+                        echo "Node version:"
+                        node --version
+
+                        echo "NPM version:"
+                        npm --version
+
                         npm install
-                        npm run build
-                        '''
+
+                        echo "Building React frontend..."
+                        CI=false npm run build
+                      '''
                     }
                 }
 
