@@ -105,17 +105,17 @@ pipeline {
                          docker build \
                          -t ${DOCKER_BACKEND_IMAGE}:latest \
                          -f backend/Dockerfile \
-                         backend .
+                         backend 
                         '''
                     sh '''
                          docker build \
                          -t ${DOCKER_FRONTEND_IMAGE}:latest \
                          -f frontend/Dockerfile \
-                         frontend .
+                         frontend 
                         '''
                     
-                    def backendImage = docker.image("${DOCKER_BACKEND_IMAGE}")
-                    def frontendImage = docker.image("${DOCKER_FRONTEND_IMAGE}")
+                    def backendImage = docker.image("${DOCKER_BACKEND_IMAGE}:latest")
+                    def frontendImage = docker.image("${DOCKER_FRONTEND_IMAGE}:latest")
 
                     docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
                         backendImage.push()
