@@ -140,6 +140,9 @@ pipeline {
                     sh '''
                         set -e
 
+                         git config --global --add safe.directory \
+                        /var/lib/jenkins/workspace/netflix-cicd-pipeline
+
                         echo "Checking Git repository..."
                         git rev-parse --show-toplevel
                         
