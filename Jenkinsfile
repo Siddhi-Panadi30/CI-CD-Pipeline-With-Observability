@@ -152,13 +152,13 @@ pipeline {
                         BUILD_NUMBER=${BUILD_NUMBER}
 
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" \
-                        netflix-clone/k8s/backend/deployment.yaml
+                        k8s/backend/deployment.yaml
                         
                         sed -i "s|replaceImageTag|${BUILD_NUMBER}|g" \
-                        netflix-clone/k8s/frontend/deployment.yaml
+                        k8s/frontend/deployment.yaml
 
-                        git add netflix-clone/k8s/backend/deployment.yaml
-                        git add netflix-clone/k8s/frontend/deployment.yaml
+                        git add k8s/backend/deployment.yaml
+                        git add k8s/frontend/deployment.yaml
 
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
 
