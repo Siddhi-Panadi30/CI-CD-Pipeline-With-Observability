@@ -67,24 +67,27 @@ pipeline {
 
                     // Backend analysis
                     sh '''
-                        cd backend
-                        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
-                            -Dsonar.projectKey=netflix-backend \
-                            -Dsonar.projectName="Netflix Backend" \
-                            -Dsonar.token=$SONAR_AUTH_TOKEN \
-                            -Dsonar.host.url=$SONAR_URL
-                    '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=netflix-frontend \
+                        -Dsonar.projectName="Netflix Frontend" \
+                        -Dsonar.sources=src \
+                        -Dsonar.exclusions=node_modules/**,build/**,dist/** \
+                        -Dsonar.nodejs.executable=/usr/bin/node \
+                        -Dsonar.token=$SONAR_AUTH_TOKEN \
+                        -Dsonar.host.url=$SONAR_URL
+                       '''
 
                     // Frontend analysis
                     sh '''
                         sonar-scanner \
-                            -Dsonar.projectKey=netflix-frontend \
-                            -Dsonar.projectName="Netflix Frontend" \
-                            -Dsonar.sources=src \
-                            -Dsonar.exclusions=node_modules/**,build/**,dist/** \
-                            -Dsonar.token=$SONAR_AUTH_TOKEN \
-                            -Dsonar.host.url=$SONAR_URL
-                    '''
+                        -Dsonar.projectKey=netflix-frontend \
+                        -Dsonar.projectName="Netflix Frontend" \
+                        -Dsonar.sources=src \
+                        -Dsonar.exclusions=node_modules/**,build/**,dist/** \
+                        -Dsonar.nodejs.executable=/usr/bin/node \
+                        -Dsonar.token=$SONAR_AUTH_TOKEN \
+                        -Dsonar.host.url=$SONAR_URL
+                      '''
                 }
             }
         }
