@@ -68,11 +68,10 @@ pipeline {
                     // Backend analysis
                     sh '''
                         sonar-scanner \
-                        -Dsonar.projectKey=netflix-frontend \
-                        -Dsonar.projectName="Netflix Frontend" \
+                        -Dsonar.projectKey=netflix-backend \
+                        -Dsonar.projectName="Netflix Backend" \
                         -Dsonar.sources=src \
-                        -Dsonar.exclusions=node_modules/**,build/**,dist/** \
-                        -Dsonar.nodejs.executable=/usr/bin/node \
+                        -Dsonar.java.binaries=target/classes \
                         -Dsonar.token=$SONAR_AUTH_TOKEN \
                         -Dsonar.host.url=$SONAR_URL
                        '''
@@ -111,6 +110,7 @@ pipeline {
                          docker build \
                          -t ${DOCKER_FRONTEND_IMAGE}:latest \
                          -f frontend/Dockerfile \
+                         frontend
                         '''
                     
                     def backendImage = docker.image("${DOCKER_BACKEND_IMAGE}:latest")
