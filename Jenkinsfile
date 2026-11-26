@@ -110,6 +110,7 @@ pipeline {
                          docker build \
                          -t ${DOCKER_FRONTEND_IMAGE}:latest \
                          -f Dockerfile \
+                         .
                         '''
                     
                     def backendImage = docker.image("${DOCKER_BACKEND_IMAGE}:latest")
