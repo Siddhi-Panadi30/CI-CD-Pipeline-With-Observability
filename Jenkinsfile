@@ -138,6 +138,11 @@ pipeline {
                     )
                 ]) {
                     sh '''
+                        set -e
+
+                        echo "Checking Git repository..."
+                        git rev-parse --show-toplevel
+                        
                         git config user.email "siddhipanadi@gmail.com"
                         git config user.name "Siddhi-Panadi30"
 
