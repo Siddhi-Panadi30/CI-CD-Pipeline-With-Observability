@@ -2,7 +2,7 @@
 pipeline {
     agent {
         docker {
-            image 'siddhip30/netflix-jenkins-agent:v2'
+            image 'siddhip30/jenkins-docker-agent:latest'
             args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
