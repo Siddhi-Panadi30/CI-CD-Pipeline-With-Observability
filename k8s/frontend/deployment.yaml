@@ -23,7 +23,7 @@ spec:
       
       containers:
         - name: frontend
-          image:siddhip30/netflix-frontend:v1
+          image:siddhip30/netflix-frontend:replaceImageTag
           imagePullPolicy: IfNotPresent 
           
           ports:
