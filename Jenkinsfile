@@ -93,8 +93,8 @@ pipeline {
 
         stage('Build and Push Docker Image') {
             environment {
-                DOCKER_BACKEND_IMAGE = 'siddhip30/netflix-backend:${BUILD_NUMBER}'
-                DOCKER_FRONTEND_IMAGE = 'siddhip30/netflix-frontend${BUILD_NUMBER}'
+                DOCKER_BACKEND_IMAGE = 'siddhip30/netflix-backend'
+                DOCKER_FRONTEND_IMAGE = 'siddhip30/netflix-frontend'
                 REGISTRY_CREDENTIALS = credentials('docker-cred')
             }
 
