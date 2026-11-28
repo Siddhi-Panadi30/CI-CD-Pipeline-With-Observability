@@ -36,7 +36,7 @@ metadata:
               echo "DB is ready!"
       containers:
         - name: backend
-          image: siddhip30/netflix-backend:v1
+          image: siddhip30/netflix-backend:replaceImageTag
           
           ports:
             - containerPort: 8080
